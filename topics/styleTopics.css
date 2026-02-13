@@ -1,0 +1,437 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+@font-face {
+    font-family: 'SA Long Beach';
+    src: url('fonts/SALongBeachRegular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* base */
+body {
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+    background: #eaf7f8;
+    background-size: cover;
+}
+
+header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 40px 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 10000;
+}
+
+header ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+header ul li {
+    list-style: none;
+    margin-left: 85px;
+}
+
+header ul li a {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    padding: 6px 12px;
+    width: 120px;
+    height: 38px;
+    color: #fff;
+    border-radius: 20px;
+    font-size: 1em;
+    font-weight: 500;
+    background: #d35543;
+}
+
+.wrapper {
+    position: relative;
+    background: #76e5d5;
+    width: 95%;
+    max-width: 1900px;
+    height: 2000px;
+    margin: 340px auto 0;
+    border-radius: 20px;
+    padding: 30px;
+}
+
+.wrapper img {
+    position: absolute;
+    pointer-events: none;
+    user-select: none;
+}
+
+/* test buttons */
+.Tests {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    right: 180px;
+    margin: 110px 0;
+    z-index: 100;
+}
+
+.Tests a {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    text-decoration: none;
+    color: #eaf7f8;
+    top: 70px;
+    margin: 0 30px;
+    width: 440px;
+    height: 180px;
+    background: #5eb5ad;
+    border-radius: 20px;
+    font-size: 3.2em;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+.otherTests {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    right: 100px;
+    margin: 100px 0;
+    z-index: 100;
+}
+
+.otherTests a {
+    position: relative;
+    align-items: center;
+    text-decoration: none;
+    color: #eaf7f8;
+    top: 100px;
+    margin: 0 100px;
+    width: 440px;
+    height: 180px;
+    background: #5eb5ad;
+    border-radius: 20px;
+    font-size: 8em;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+.Tests a:hover,
+.otherTests a:hover {
+    background: #eaf7f8;
+    color: #5eb5ad;
+}
+
+/* text alignment inside test buttons */
+.Righttext {
+    text-align: left;
+    padding-left: 60px;
+}
+
+.Righttext span {
+    position: absolute;
+    bottom: -20px;
+    font-size: 1.3em;
+    right: 40px;
+    user-select: none;
+}
+
+.Lefttext {
+    text-align: right;
+    padding-right: 60px;
+}
+
+.Lefttext span {
+    position: absolute;
+    bottom: -20px;
+    font-size: 1.3em;
+    left: 40px;
+    user-select: none;
+}
+
+/* decorative images – only position/dimensions vary */
+.imgPlane { top: -15%; width: 230px; right: 40%; }
+.imgLine1 { width: 22%; top: -15%; left: 31%; }
+.imgLine2 { width: 22%; top: -8%; right: 0; z-index: 50; }
+.imgpCloud { width: 145px; top: -6%; left: 40px; }
+.imgyCloud { width: 230px; top: -10%; right: 60px; }
+.imgLines1 { width: 15%; top: 4%; left: 30px; }
+.imgLines2 { width: 18%; bottom: 200px; right: 10%; }
+.imgLeaf { width: 190px; top: 16%; left: -3%; }
+.imgLeaff { width: 190px; top: 715px; left: -3%; }
+.imgPlus1 { width: 75px; top: 35%; right: 80px; }
+.imgPlus1_1 { width: 70px; bottom: 49%; left: 30px; }
+.imgPlus2 { width: 50px; bottom: 46%; left: 150px; }
+.imgPluses { width: 170px; bottom: 28%; right: 45px; }
+.imgBooks { width: 600px; bottom: -5%; right: -10px; }
+
+/* main title */
+.Grammar {
+    font-family: 'SA Long Beach', sans-serif;
+    color: #76e5d5;
+    letter-spacing: 4px;
+    position: absolute;
+    margin-left: 25%;
+    margin-top: 8%;
+    font-size: 6em;
+}
+
+.Grammar span {
+    font-family: 'SA Long Beach', sans-serif;
+    content: "";
+    display: block;
+    margin-left: 280px;
+    line-height: 1em;
+}
+
+/* fade-in animation */
+.Grammar, .otherTests, .Tests, header, .wrapper img {
+    transform: translateY(20%);
+    animation: ani 1s forwards;
+}
+
+@keyframes ani {
+    0% { transform: translateY(20%); opacity: 0; }
+    100% { transform: translateY(0); opacity: 1; }
+}
+
+/* ========== MEDIA QUERIES ========== */
+/* only overridden properties are kept */
+
+@media (max-width: 1600px) {
+    .Tests { margin: 110px 65px; width: 90%; right: 180px; }
+    .Tests a { top: 60px; font-size: 3.3em; }
+    .otherTests a { top: 90px; width: 400px; font-size: 7.5em; }
+    .Righttext span { bottom: -5px; font-size: 1.2em; right: 25px; }
+    .Lefttext span { bottom: -5px; font-size: 1.2em; left: 25px; }
+    .imgPlane { top: -14%; width: 210px; right: 39%; }
+    .imgLine1 { width: 23%; top: -14%; left: 31%; }
+    .imgLine2 { width: 23%; top: -7%; right: -2%; }
+    .imgpCloud { width: 135px; top: -5%; left: 30px; }
+    .imgyCloud { width: 210px; top: -9%; right: 30px; }
+    .Grammar { margin-left: 25%; margin-top: 10%; font-size: 5.5em; }
+    .imgPlus2 { width: 50px; bottom: 47%; left: 150px; }
+    .imgLeaf { width: 160px; top: 15%; }
+    .imgLeaff { width: 160px; top: 632px; }
+    .imgLines1 { width: 17%; }
+    .imgLines2 { width: 17%; }
+    .imgBooks { width: 550px; bottom: -4%; }
+}
+
+@media (max-width: 1536px) {
+    .Tests a { font-size: 3em; }
+}
+
+@media (max-width: 1440px) {
+    .Tests a { font-size: 2.7em; }
+    .otherTests a { width: 380px; font-size: 7.3em; }
+    .imgPlane { top: -13%; width: 200px; right: 35%; }
+    .imgLine1 { width: 24%; top: -13%; left: 32%; }
+    .imgLine2 { width: 24%; top: -7%; right: -2%; }
+    .imgLines1 { width: 18%; }
+    .imgLines2 { width: 19%; }
+    .Grammar { margin-left: 25%; margin-top: 12%; font-size: 5em; }
+}
+
+@media (max-width: 1366px) {
+    .Tests a { font-size: 2.7em; }
+    .otherTests a { width: 360px; font-size: 7.2em; }
+    .Righttext span { bottom: 5px; font-size: 1.1em; right: 20px; }
+    .Lefttext span { bottom: 5px; font-size: 1.1em; left: 20px; }
+    .imgPlane { width: 190px; right: 36%; }
+    .imgLine1 { width: 24%; top: -11%; left: 32%; }
+    .imgLine2 { width: 24%; top: -7%; right: -3%; }
+    .imgyCloud { width: 210px; top: -9%; right: 10px; }
+    .imgLines1 { width: 18%; }
+    .imgLines2 { width: 19%; }
+    .Grammar { margin-left: 22%; margin-top: 18%; font-size: 4.5em; }
+    .imgPluses { bottom: 32%; right: 45px; }
+}
+
+@media (max-width: 1200px) {
+    .Tests a { font-size: 2em; }
+    .otherTests a { width: 360px; font-size: 7.2em; }
+    .Righttext span,
+    .Lefttext span { display: none; }
+    .Grammar { margin-left: 20%; margin-top: 20%; font-size: 4.2em; }
+}
+
+@media (max-width: 1080px) {
+    .Tests { margin: 120px 40px; }
+    .Tests a { font-size: 2em; }
+    .otherTests a { width: 360px; font-size: 7.2em; }
+    .Righttext span,
+    .Lefttext span { display: none; }
+    .imgPlane { top: -12%; width: 190px; right: 25%; }
+    .imgLeaf { width: 130px; top: 20%; }
+    .imgLeaff { width: 130px; top: 670px; }
+    .imgLine1 { width: 35%; top: -12%; left: 30%; }
+    .imgLine2 { width: 31%; top: -8%; right: -3%; }
+    .imgyCloud { width: 190px; top: -10%; right: 10px; }
+    .imgpCloud { width: 125px; top: -5%; left: 30px; }
+    .imgLines1 { width: 25%; }
+    .imgLines2 { width: 30%; }
+    .imgPlus1 { width: 65px; top: 34%; right: 70px; }
+    .imgPlus1_1 { width: 65px; bottom: 48%; left: 30px; }
+    .imgPlus2 { width: 45px; bottom: 45%; left: 120px; }
+    .imgPluses { width: 150px; bottom: 30%; right: 35px; }
+    .Grammar { margin-left: 19%; margin-top: 15%; font-size: 5em; }
+    .Grammar span { margin-left: 280px; }
+}
+
+@media (max-width: 900px) {
+    .Grammar { font-size: 4.4em; margin-top: 20%; }
+    .Grammar span { margin-left: 230px; }
+}
+
+@media (max-width: 800px) {
+    .Grammar { font-size: 4em; margin-top: 22%; }
+    .Tests { margin: 100px 40px; }
+    .Tests a { font-size: 1.5em; }
+}
+
+@media (max-width: 720px) {
+    header ul li { margin-left: 5px; }
+    .Tests {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        margin: 15px;
+    }
+    .Tests a {
+        top: 70px;
+        margin: 35px;
+        width: 80%;
+        max-width: 440px;
+        height: 180px;
+        font-size: 3.1em;
+    }
+    .wrapper { height: 3700px; }
+    .imgPlane { top: -6%; width: 160px; right: 15%; }
+    .imgLine1 { width: 50%; top: -6.2%; left: 23%; }
+    .imgLine2 { display: none; }
+    .imgpCloud,
+    .imgyCloud { display: none; }
+    .imgLines1 { width: 33%; top: 1.5%; left: 30px; }
+    .imgLines2 { width: 35%; bottom: 150px; right: 5%; }
+    .imgLeaf { width: 130px; top: 25%; left: -3%; }
+    .imgLeaff { width: 130px; top: 32.3%; left: -3%; }
+    .imgPlus1 { width: 75px; top: 17%; right: 50px; }
+    .imgPlus1_1 { width: 65px; bottom: 57%; left: 30px; }
+    .imgPlus2 { width: 40px; bottom: 55%; left: 120px; }
+    .imgPluses { width: 130px; bottom: 27.5%; right: 45px; }
+    .imgBooks { width: 400px; bottom: -3%; right: -10px; }
+    .Grammar { margin-left: 6%; margin-top: 24%; font-size: 4.1em; }
+    .Grammar span { margin-left: 240px; }
+    .otherTests a { top: 100px; height: 150px; font-size: 6em; margin: 0 50px; }
+    .Righttext,
+    .Lefttext { text-align: center; padding: 0 20px; }
+    .Righttext span,
+    .Lefttext span { display: none; }
+}
+
+@media (max-width: 600px) {
+    .Grammar { font-size: 3.6em; margin-top: 34%; }
+}
+
+@media (max-width: 525px) {
+    .Grammar { font-size: 3.2em; margin-top: 40%; }
+    .Grammar span { margin-left: 200px; }
+}
+
+@media (max-width: 480px) {
+    header ul li { margin-left: 5px; }
+    .Tests {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        margin: 15px;
+    }
+    .Tests a {
+        top: 70px;
+        margin: 35px;
+        width: 80%;
+        max-width: 400px;
+        height: 160px;
+        font-size: 2.1em;
+    }
+    .wrapper { height: 3300px; }
+    .imgPlane { top: -6%; width: 120px; right: 15%; }
+    .imgLine1 { width: 50%; top: -6%; left: 23%; }
+    .imgLine2,
+    .imgpCloud,
+    .imgyCloud { display: none; }
+    .imgLines1 { width: 33%; top: 1.5%; left: 30px; }
+    .imgLines2 { width: 40%; bottom: 120px; right: 5%; }
+    .imgLeaf { width: 95px; top: 30%; left: -3%; }
+    .imgLeaff { width: 95px; top: 1187px; left: -3%; }
+    .imgPlus1 { width: 50px; top: 16%; right: 35px; }
+    .imgPlus1_1 { width: 47px; bottom: 54%; left: 20px; }
+    .imgPlus2 { width: 30px; bottom: 53%; left: 100px; }
+    .imgPluses { width: 90px; bottom: 18%; right: 40px; }
+    .imgBooks { width: 350px; bottom: -2%; right: -10px; }
+    .Grammar { margin-left: 7%; margin-top: 47%; font-size: 2.6em; }
+    .Grammar span { margin-left: 180px; margin-bottom: 10px; }
+    .otherTests a { top: 50px; height: 100px; font-size: 4em; margin: 0 50px; }
+    .Righttext,
+    .Lefttext { text-align: center; padding: 0 20px; }
+    .Righttext span,
+    .Lefttext span { display: none; }
+}
+
+@media (max-width: 405px) {
+    .Grammar { margin-left: 4%; font-size: 2.6em; margin-top: 50%; }
+    .Grammar span { margin-left: 170px; }
+}
+
+@media (max-width: 393px) {
+    header ul li a { width: 100px; height: 38px; }
+    .Tests {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        margin: 15px;
+    }
+    .Tests a {
+        top: 70px;
+        margin: 35px;
+        width: 80%;
+        max-width: 400px;
+        height: 160px;
+        font-size: 1.8em;
+    }
+    .wrapper { height: 3250px; margin: 210px auto 0; }
+    .imgPlane { top: -4%; width: 90px; right: 15%; }
+    .imgLine1 { top: -4%; }
+    .imgLines1 { width: 40%; top: 2%; left: 30px; }
+    .imgLines2 { width: 40%; bottom: 50px; right: 5%; }
+    .imgLeaf { width: 85px; top: 19%; left: -3%; }
+    .imgLeaff { width: 85px; top: 793px; left: -3%; }
+    .imgPlus1 { width: 40px; top: 20%; right: 20px; }
+    .imgPlus1_1 { width: 40px; bottom: 61.5%; left: 15px; }
+    .imgPlus2 { width: 30px; bottom: 60%; left: 80px; }
+    .imgPluses { width: 90px; bottom: 17%; right: 10px; }
+    .imgBooks { width: 300px; bottom: -3%; right: -10px; }
+    .Grammar { font-size: 2.2em; margin-top: 26%; }
+    .Grammar span { margin-left: 135px; margin-bottom: 4%; }
+    .otherTests a { top: 30px; font-size: 4em; margin: 0 25px; }
+}
+
