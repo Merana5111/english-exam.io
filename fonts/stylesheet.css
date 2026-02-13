@@ -1,0 +1,8 @@
+@font-face {
+    font-family: 'Monotype Corsiva Regular';
+    src: url('MonotypeCorsivaRegularItalic.woff2') format('woff2');
+    font-weight: 500;
+    font-style: italic;
+    font-display: swap;
+}
+
