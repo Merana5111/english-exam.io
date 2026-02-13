@@ -1,0 +1,297 @@
+const questions = [
+    {
+        question:`Do you want <span class="line"></span> chips.`,
+        answers: [
+            {text : "some", correct: true},
+            {text : "any", correct: false},
+            {text : "a", correct: false},
+            {text : "an", correct: false},
+        ]
+    },
+    {
+        question:`Have you got <span class="line"></span> pen.`,
+        answers: [
+            {text : "an", correct: false},
+            {text : "some", correct: false},
+            {text : "a", correct: true},
+            {text : "any", correct: false},
+        ]
+    },
+    {
+        question:`Can I have <span class="line"></span> milk, please?`,
+        answers: [
+            {text : "a", correct: false},
+            {text : "an", correct: false},
+            {text : "some", correct: true},
+            {text : "any", correct: false},
+        ]
+    },
+    {
+        question:`We didn't see <span class="line"></span> people in the streets.`,
+        answers: [
+            {text : "an", correct: false},
+            {text : "a", correct: false},
+            {text : "some", correct: false},
+            {text : "any", correct: true},
+        ]
+    },
+    {
+        question:`My wife doesn't want <span class="line"></span> dog.`,
+        answers: [
+            {text : "an", correct: false},
+            {text : "a", correct: true},
+            {text : "some", correct: false},
+            {text : "any", correct: false},
+        ]
+    },
+    {
+        question: `I have <span class="line"></span> biscuits in my bag.`,
+        answers: [
+            {text : "some", correct: true},
+            {text : "any", correct: false},
+            {text : "a", correct: false},
+            {text : "an", correct: false},
+        ]
+    },
+    {
+        question:`We need <span class="line"></span> milk for the cake.`,
+        answers: [
+            {text : "a", correct: false},
+            {text : "an", correct: false},
+            {text : "some", correct: true},
+            {text : "any", correct: false},
+        ]
+    },
+    {
+        question:`Are there <span class="line"></span> sandwiches on the table.`,
+        answers: [
+            {text : "some", correct: false},
+            {text : "any", correct: true},
+            {text : "a", correct: false},
+            {text : "an", correct: false},
+        ]
+    },
+    {
+        question:`I need <span class="line"></span> information about the city.`,
+        answers: [
+            {text : "any", correct: false},
+            {text : "some", correct: true},
+            {text : "a", correct: false},
+            {text : "an", correct: false},
+        ]
+    },
+    {
+        question:`Have you got <span class="line"></span> apple in your bag?`,
+        answers: [
+            {text : "a", correct: false},
+            {text : "any", correct: false},
+            {text : "some", correct: false},
+            {text : "an", correct: true},
+        ]
+    }
+];
+
+
+function getRandomNumber(max) {
+    return Math.floor(Math.random() * max);
+}
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = getRandomNumber(i + 1);
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+}
+    
+const randomQuestion = questions[getRandomNumber(questions.length)];
+console.log(randomQuestion.question);
+
+
+const questionElement = document.getElementById("question");
+const answerButtons = document.getElementById("answer-buttons");
+const nextButton = document.getElementById("next-btn");
+const backtomenu = document.getElementById("backtomenu-btn")
+const topics = document.getElementById("topics-btn")
+
+let currentQuestionIndex = 0;
+let score = 0;
+
+function startQuiz(){
+    currentQuestionIndex = 0;
+    score = 0;
+    nextButton.innerHTML = "Next";
+    showQuestion();
+}
+
+function showQuestion(){
+    resetState();
+    let currentQuestion = questions[currentQuestionIndex];
+    let questionNo = currentQuestionIndex + 1;
+    questionElement.innerHTML = questionNo + ". " + currentQuestion.question;
+
+    currentQuestion.answers.forEach(answer => {
+        const button = document.createElement("button");
+        button.innerHTML = answer.text;
+        button.classList.add("btn");
+        answerButtons.appendChild(button);
+        if(answer.correct) {
+            button.dataset.correct = answer.correct;
+        }
+        button.addEventListener("click", selectAnswer);
+    });
+
+}
+
+function resetState() {
+    nextButton.style.display = "none";
+    backtomenu.style.display = "none";
+    topics.style.display = "none";
+    while(answerButtons.firstChild) {
+        answerButtons.removeChild(answerButtons.firstChild);
+    }
+}
+
+function selectAnswer(e){
+    const selectedBtn = e.target;
+    const isCorrect = selectedBtn.dataset.correct === "true";
+    if(isCorrect){
+        selectedBtn.classList.add("correct");
+        score++;
+    }else{
+        selectedBtn.classList.add("incorrect");
+    }
+    Array.from(answerButtons.children).forEach(button => {
+        if(button.dataset.correct === "true"){
+            button.classList.add("correct");
+        }
+        button.disabled = true;
+    });
+    nextButton.style.display = "block";
+}
+
+function showScore(){
+    resetState();
+    questionElement.innerHTML = `You scored ${score} out of ${questions.length}!`;
+    nextButton.innerHTML = "Play Again";
+    nextButton.style.display = "block";
+    backtomenu.innerHTML = "Back to home";
+    backtomenu.style.display = "block";
+    topics.innerHTML = "Back to topics";
+    topics.style.display = "block";
+}
+
+function handleNextButton(){
+    currentQuestionIndex++;
+    if(currentQuestionIndex < questions.length){
+        showQuestion();
+    }else{
+        showScore();
+    }
+}
+
+nextButton.addEventListener("click", ()=>{
+    if(currentQuestionIndex < questions.length){
+        handleNextButton();
+    }else{
+        shuffleArray(questions);
+        startQuiz();
+    }
+});
+
+shuffleArray(questions);
+startQuiz();
+
+const originalShowScore = showScore;
+showScore = function() {
+    originalShowScore.call(this);
+    
+    // Создаем кнопку отправки результатов
+    const sendResultsBtn = document.createElement('button');
+    sendResultsBtn.id = 'send-results-btn';
+    sendResultsBtn.innerHTML = 'Send results';
+    sendResultsBtn.style.display = 'block';
+    
+    // Вставляем кнопку после кнопки "Back to topics"
+    const topicsBtn = document.getElementById('topics-btn');
+    topicsBtn.parentNode.insertBefore(sendResultsBtn, topicsBtn.nextSibling);
+    
+    // Добавляем обработчик
+    sendResultsBtn.addEventListener('click', openResultsModal);
+};
+
+// Функции для работы с модальным окном
+function openResultsModal() {
+    document.getElementById('resultsModal').style.display = 'flex';
+    document.getElementById('studentName').value = '';
+    document.getElementById('studentName').focus();
+}
+
+function closeModal() {
+    document.getElementById('resultsModal').style.display = 'none';
+}
+
+// Функция отправки результатов
+function sendResultsByEmail() {
+    const studentName = document.getElementById('studentName').value.trim();
+    const teacherEmail = "mishishiii5@gmail.com"; 
+    
+    if (!studentName) {
+        alert("Please enter your first and last name.");
+        return;
+    }
+    
+    // Подсчитываем детали ответов (добавьте эту функцию)
+    const answersDetails = getDetailedResults();
+    
+    // Формируем текст письма
+    const subject = encodeURIComponent(`Результаты теста: ${studentName}`);
+    const body = encodeURIComponent(
+`Уважаемый преподаватель!
+
+📋 Результаты тестирования:
+
+Студент: ${studentName}
+Тест: English Countable/Uncountable Quiz
+Правильных ответов: ${score} из ${questions.length}
+Процент: ${Math.round((score/questions.length)*100)}%
+Дата: ${new Date().toLocaleDateString('ru-RU')}
+
+
+`);
+    
+    // Создаем mailto ссылку
+    const mailtoLink = `mailto:${teacherEmail}?subject=${subject}&body=${body}`;
+    
+    // Открываем почтовый клиент
+    window.location.href = mailtoLink;
+    
+    // Закрываем окно
+    setTimeout(() => {
+        closeModal();
+        alert("Откроется ваша почта. Пожалуйста, нажмите 'Отправить' в письме.");
+    }, 500);
+}
+
+// Функция для получения детальных результатов
+function getDetailedResults() {
+    let details = "📝 Детали ответов:\n";
+    
+    // Вам нужно сохранять ответы пользователя для этого
+    // Добавьте эту логику в существующий код:
+    
+    return details + "\n(Детали ответов доступны в полной версии)";
+}
+
+// Закрытие модального окна при клике вне его
+document.getElementById('resultsModal').addEventListener('click', function(e) {
+    if (e.target === this) {
+        closeModal();
+    }
+});
+
+// Закрытие по Escape
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && document.getElementById('resultsModal').style.display === 'flex') {
+        closeModal();
+    }
+});
